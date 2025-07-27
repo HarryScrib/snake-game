@@ -5,7 +5,7 @@
 /model/
 
 # python cache
-__pyache__/
+__pycache__/
 
 # OS files
 .DS_Store
