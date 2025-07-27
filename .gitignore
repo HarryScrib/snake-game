@@ -1,0 +1,12 @@
+# venv
+/venv/
+
+# testing data (for fresh)
+/model/
+
+# python cache
+__pyache__/
+
+# OS files
+.DS_Store
+Thumbs.db
