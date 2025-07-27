@@ -98,21 +98,10 @@ class Agent:
     def get_action(self, state):
         # epsilon-greedy strategy: balance exploration vs exploitation during training
         # as games increase, epsilon decreases (less random exploration, more learned behaviour)
-        self.epsilon = max(5, 200 - self.n_games * 0.1) # more games we have, smaller epsilon becomes
-        # much slower decay, maintains 2.5% exploration
-        
-        # old schedule:
-
-        # game 1: 79/200 = 39.5% exploration
-        # game 40: 40/200 = 20% exploration
-        # game 80+: 0% exploration (stops learning new strategies)
-
-        # new schedule:
-
-        # game 1: 199.9/200 = 99.95% exploration
-        # game 1000: 100/200 = 50% exploration
-        # game 1950: 5/200 = 2.5% exploration
-        # game 2000+: 5/200 = 2.5% exploration (maintains some exploration forever)
+        if self.n_games < 500:
+            self.epsilon = max(20, 100 - self.n_games * 0.2)  # learn basics
+        else:
+            self.epsilon = 0  # pure exploitation
       
         # initialise action array: [straight, right, left] - only one will be set to 1
         final_move = [0,0,0]
